@@ -1,0 +1,26 @@
+以下是一个使用Python语言实现时间序列模型（Time Series Model）的示例：
+
+```python
+# 导入需要的库
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+from statsmodels.tsa.arima.model import ARIMA
+
+# 加载数据集
+dataset = pd.read_csv('data.csv', header=0, index_col=0)
+
+# 绘制时序图
+plt.plot(dataset)
+plt.show()
+
+# 拟合ARIMA模型
+model = ARIMA(dataset, order=(1, 1, 1))
+model_fit = model.fit()
+
+# 预测未来值
+future_values = model_fit.predict(start=len(dataset), end=len(dataset)+2, typ='levels')
+
+# 打印预测结果
+print(f"未来三个时刻的预测值为: {future_values}")
+```
