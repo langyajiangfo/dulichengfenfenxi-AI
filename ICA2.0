@@ -1,0 +1,25 @@
+以下是一个将ICA分量数设置为100的独立成分分析（ICA）模型的示例：
+
+```python
+# 导入需要的库
+from sklearn.decomposition import FastICA
+from sklearn.datasets import load_digits
+import matplotlib.pyplot as plt
+
+# 加载手写数字数据集
+dataset = load_digits()
+
+# 初始化ICA模型
+n_components = 100 # 设置ICA分量数为100
+model = FastICA(n_components=n_components)
+
+# 拟合模型
+model.fit(dataset.data)
+
+# 可视化ICA提取结果
+fig, axs = plt.subplots(10, 10)
+for i, ax in enumerate(axs.flat):
+    ax.imshow(model.components_[i].reshape(8, 8), cmap='gray')
+    ax.set_title(f"Component {i+1}")
+plt.show()
+```
